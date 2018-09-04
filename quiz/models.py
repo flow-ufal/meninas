@@ -16,9 +16,14 @@ import datetime
 class Questionario(models.Model):
     name = models.CharField(max_length = 50, help_text="Nome do Questionario")
     pub_date = models.DateTimeField(auto_now_add = True, help_text="A data de publicação",null=True, blank= True)
+    questionText = models.CharField(max_length = 500, help_text="O texto da Questionário", null=True, blank=True)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+
+    def __str__(self):
+        return '{0} ({1})'.format(self.name,self.questionText)
+
 
 
 class MultipleOptionQuestion(models.Model):
@@ -81,5 +86,8 @@ class Answer(models.Model):
     related_name = "Answer",
     on_delete=models.CASCADE)
     answer = models.CharField("Answer", max_length=500)
+
+# Create your models here.
+
 
 # Create your models here.
