@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import Http404
 
 
-from .models import Questionario
+from .models import Questionario, MultipleOptionQuestion, OpenQuestion
 
 
 def index(request):
@@ -11,12 +11,18 @@ def index(request):
     context = {'latest_questionare_list': latest_questionare_list}
     return render(request, 'quiz/index.html', context)
 
-def detail(request, questionario_id):
+def perguntas_dentro_do_questionario(request, multipleoptionquestion_id):
+    multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = multipleoptionquestion_id)
+    context = {"multipleopenquestion_list" : multipleopenquestion_list}
+
+    return render(request,'quiz/depois_do_link.html', context)
+
+def detail(request, multipleoptionquestion_id):
     try:
-        questionario = Questionario.objects.get(pk=questionario_id)
+        list = Questionario.objects.get(multipleoptionquestion=multipleoptionquestion_id)
     except Questionario.DoesNotExist:
         raise Http404("Questionario does not exist")
-    return render(request, 'quiz/detail.html', {'questionario': questionario})
+    return render(request, 'quiz/detail.html', {'list': list})
 
 def results(request, questionario_id):
     response = "You're looking at the results of questionare %s."

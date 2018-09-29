@@ -1,0 +1,9 @@
+{% if multipleopenquestion_list %}
+    <ul>
+    {% for multipleoptionquestion in multipleopenquestion_list %}
+        <li><a href="/quiz/{{ multipleoptionquestion.id }}/">{{ multipleoptionquestion.questionText }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No quesitons are available.</p>
+{% endif %}
