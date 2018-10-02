@@ -1,0 +1,9 @@
+{% if latest_questionare_list %}
+    <ul>
+    {% for questionario in latest_questionare_list %}
+        <li><a href="/quiz/{{ questionario.id }}/">{{ questionario.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No quizzes are available.</p>
+{% endif %}
