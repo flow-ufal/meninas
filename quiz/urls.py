@@ -11,4 +11,3 @@ urlpatterns = [
     # ex: /quiz/5/vote/
     path('<int:questionario_id>/vote/', views.vote, name='vote'),
 ]
-
