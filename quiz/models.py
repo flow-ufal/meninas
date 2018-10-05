@@ -86,8 +86,3 @@ class Answer(models.Model):
     related_name = "Answer",
     on_delete=models.CASCADE)
     answer = models.CharField("Answer", max_length=500)
-
-# Create your models here.
-
-
-# Create your models here.
