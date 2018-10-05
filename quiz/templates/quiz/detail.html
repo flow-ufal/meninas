@@ -1,6 +1,9 @@
-<h1>{{ questionario.name }}</h1>
-<ul>
-{% for choice in questionario.questiontext %}
-    <li>{{ choice}}</li>
-{% endfor %}
-</ul>
+{% if list.name %}
+    <ul>
+    {% for question in list %}
+        <li><a href="/quiz/{{ question.id }}/">{{ question.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Questions are available.</p>
+{% endif %}
