@@ -7,3 +7,13 @@
 {% else %}
     <p>No quesitons are available.</p>
 {% endif %}
+
+{% if openquestion_list %}
+    <ul>
+    {% for openquestion in openquestion_list %}
+        <li> {{ openquestion.questionText }} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No quesitons are available.</p>
+{% endif %}
