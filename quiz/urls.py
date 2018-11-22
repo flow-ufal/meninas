@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     # ex: /quiz/5/
-    path('<int:questionario_id>/', views.detail, name='detail'),
+    path('<int:multipleoptionquestion_id>/', views.perguntas_dentro_do_questionario, name='depois_questionario'),
     # ex: /quiz/5/results/
     path('<int:questionario_id>/results/', views.results, name='results'),
     # ex: /quiz/5/vote/
