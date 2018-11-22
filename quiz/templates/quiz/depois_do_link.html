@@ -1,7 +1,7 @@
 {% if multipleopenquestion_list %}
     <ul>
     {% for multipleoptionquestion in multipleopenquestion_list %}
-        <li><a href="/quiz/{{ multipleoptionquestion.id }}/">{{ multipleoptionquestion.questionText }}</a></li>
+        <li> {{multipleoptionquestion.questionText}} </li>
     {% endfor %}
     </ul>
 {% else %}
