@@ -11,8 +11,10 @@ def index(request):
     context = {'latest_questionare_list': latest_questionare_list}
     return render(request, 'quiz/index.html', context)
 
-def perguntas_dentro_do_questionario(request, multipleoptionquestion_id):
-    multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = multipleoptionquestion_id)
-    context = {"multipleopenquestion_list" : multipleopenquestion_list}
+def perguntas_dentro_do_questionario(request, questionario_id):
+    multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = questionario_id)
+    openquestion_list = OpenQuestion.objects.filter(di = questionario_id)
+    context = {"multipleopenquestion_list" : multipleopenquestion_list, "openquestion_list" : openquestion_list}
 
     return render(request,'quiz/depois_do_link.html', context)
+
