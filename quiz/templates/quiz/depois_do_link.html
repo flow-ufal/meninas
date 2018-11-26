@@ -1,9 +1,21 @@
+<h3>Questões de múltipla escolha:</h3>
 {% if multipleopenquestion_list %}
     <ul>
     {% for multipleoptionquestion in multipleopenquestion_list %}
-        <li><a href="/quiz/{{ multipleoptionquestion.id }}/">{{ multipleoptionquestion.questionText }}</a></li>
+        <li> {{multipleoptionquestion.questionText}} </li>
     {% endfor %}
     </ul>
 {% else %}
-    <p>No quesitons are available.</p>
+    <p>Não há questões de múltipla escolha disponíveis.</p>
+{% endif %}
+
+<h3>Questões dissertativas:</h3>
+{% if openquestion_list %}
+    <ul>
+    {% for openquestion in openquestion_list %}
+        <li> {{ openquestion.questionText }} </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>Não há questões dissertativas disponíveis.</p>
 {% endif %}

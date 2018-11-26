@@ -11,22 +11,10 @@ def index(request):
     context = {'latest_questionare_list': latest_questionare_list}
     return render(request, 'quiz/index.html', context)
 
-def perguntas_dentro_do_questionario(request, multipleoptionquestion_id):
-    multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = multipleoptionquestion_id)
-    context = {"multipleopenquestion_list" : multipleopenquestion_list}
+def perguntas_dentro_do_questionario(request, questionario_id):
+    multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = questionario_id)
+    openquestion_list = OpenQuestion.objects.filter(di = questionario_id)
+    context = {"multipleopenquestion_list" : multipleopenquestion_list, "openquestion_list" : openquestion_list}
 
     return render(request,'quiz/depois_do_link.html', context)
 
-def detail(request, multipleoptionquestion_id):
-    try:
-        list = Questionario.objects.get(multipleoptionquestion=multipleoptionquestion_id)
-    except Questionario.DoesNotExist:
-        raise Http404("Questionario does not exist")
-    return render(request, 'quiz/detail.html', {'list': list})
-
-def results(request, questionario_id):
-    response = "You're looking at the results of questionare %s."
-    return HttpResponse(response % questionario_id)
-
-def vote(request, questionario_id):
-    return HttpResponse("You're voting on question %s." % questionario_id)
