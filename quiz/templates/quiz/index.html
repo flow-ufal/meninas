@@ -1,8 +1,8 @@
-<h2>Questionários recentes:</h2>
+<h2>Todos os questionarios:</h2>
 
-{% if latest_questionare_list %}
+{% if questionare_list %}
     <ul>
-    {% for questionario in latest_questionare_list %}
+    {% for questionario in questionare_list %}
         <li><a href="/quiz/{{ questionario.id }}/">{{ questionario.name }}</a></li>
     {% endfor %}
     </ul>
