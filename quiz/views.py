@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import Http404
 
 
-from .models import Questionario, MultipleOptionQuestion, OpenQuestion
+from .models import Questionario, MultipleOptionQuestion, OpenQuestion, Choice
 
 
 def index(request):
@@ -13,10 +13,12 @@ def index(request):
 
 def perguntas_dentro_do_questionario(request, questionario_id):
     multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = questionario_id)
-    choice_list = MultipleOptionQuestion.objects.filter(choices = questionario_id)
     openquestion_list = OpenQuestion.objects.filter(di = questionario_id)
+    choice_dict = {}
+    for multipleoptionquestion in multipleopenquestion_list:
+        choice_dict[multipleoptionquestion.id] = list(Choice.objects.filter(question = multipleoptionquestion.id))
     context = {"multipleopenquestion_list" : multipleopenquestion_list,
-                "openquestion_list" : openquestion_list,
-                "choice_list" : choice_list}
+               "openquestion_list" : openquestion_list,
+               "choice_dict" : choice_dict}
 
     return render(request,'quiz/depois_do_link.html', context)
