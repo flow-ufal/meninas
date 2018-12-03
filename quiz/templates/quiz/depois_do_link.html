@@ -3,6 +3,11 @@
     <ul>
     {% for multipleoptionquestion in multipleopenquestion_list %}
         <li> {{multipleoptionquestion.questionText}} </li>
+        <form>
+            {% for choices in choice_dict[multipleoptionquestion.id] %}
+                <input type="radio" name="escolhas" value = choices.choice > {{choices.choice}} <br>
+            {% endfor %}
+        </form>
     {% endfor %}
     </ul>
 {% else %}
