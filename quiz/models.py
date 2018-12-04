@@ -52,8 +52,12 @@ class Choice(models.Model):
         on_delete=models.CASCADE,
      )
      choice = models.CharField("Choice", max_length=50)
+     choiceText = models.CharField(max_length = 500, help_text="O texto da opção", null=True, blank = True)
      votes = models.IntegerField(default=0)
-     position = models.IntegerField("position")
+     position = models.IntegerField("position",null=0,blank= 0)
+
+     def __str__(self):
+         return '{0} ({1})'.format(self.choice,self.choiceText)
 
 
      class Meta:
