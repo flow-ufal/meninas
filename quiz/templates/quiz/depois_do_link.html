@@ -4,8 +4,8 @@
     {% for multipleoptionquestion in multipleopenquestion_list %}
         <li> {{multipleoptionquestion.questionText}} </li>
         <form>
-            {% for choices in choice_dict[multipleoptionquestion.id] %}
-                <input type="radio" name="escolhas" value = choices.choice > {{choices.choice}} <br>
+            {% for choices in choice_list %}
+                <input type="radio" name="escolhas" value = choices.choiceText > {{choices.choiceText}} <br>
             {% endfor %}
         </form>
     {% endfor %}
@@ -19,8 +19,12 @@
     <ul>
     {% for openquestion in openquestion_list %}
         <li> {{ openquestion.questionText }} </li>
+        <input type='text' value='Escreva aqui !' />
     {% endfor %}
     </ul>
 {% else %}
     <p>Não há questões dissertativas disponíveis.</p>
 {% endif %}
+
+<div class="button">
+        <button type="submit">Confirmar!</button>
