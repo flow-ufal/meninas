@@ -4,8 +4,12 @@
     {% for multipleoptionquestion in multipleopenquestion_list %}
         <li> {{multipleoptionquestion.questionText}} </li>
         <form>
-            {% for choices in choice_list %}
-                <input type="radio" name="escolhas" value = choices.choiceText > {{choices.choiceText}} <br>
+            {% for key, choices_list in choice_dict.items %}
+              {% for choice in choices_list %}
+              {% if key == multipleoptionquestion.id%}
+                <input type="radio" name="escolhas" value = choices.choiceText > {{choice.choiceText}} <br>
+              {% endif %}
+              {% endfor %}
             {% endfor %}
         </form>
     {% endfor %}
