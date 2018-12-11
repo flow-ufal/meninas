@@ -1,17 +1,12 @@
+<form>
 <h3>Questões de múltipla escolha:</h3>
-{% if multipleopenquestion_list %}
+{% if multipleoptionquestion_dict %}
     <ul>
-    {% for multipleoptionquestion in multipleopenquestion_list %}
+    {% for multipleoptionquestion, choices_list in multipleoptionquestion_dict.items %}
         <li> {{multipleoptionquestion.questionText}} </li>
-        <form>
-            {% for key, choices_list in choice_dict.items %}
-              {% for choice in choices_list %}
-              {% if key == multipleoptionquestion.id%}
-                <input type="radio" name="escolhas" value = choices.choiceText > {{choice.choiceText}} <br>
-              {% endif %}
-              {% endfor %}
-            {% endfor %}
-        </form>
+          {% for choice in choices_list %}
+            <input type="radio" name="escolhas" value = choices.choiceText > {{choice.choiceText}} <br>
+          {% endfor %}
     {% endfor %}
     </ul>
 {% else %}
@@ -32,3 +27,5 @@
 
 <div class="button">
         <button type="submit">Confirmar!</button>
+</div>
+</form>
