@@ -12,14 +12,13 @@ def index(request):
     return render(request, 'quiz/index.html', context)
 
 def perguntas_dentro_do_questionario(request, questionario_id):
-    multipleopenquestion_list = MultipleOptionQuestion.objects.filter(delphis = questionario_id)
+    multipleoptionquestion_list = MultipleOptionQuestion.objects.filter(delphis = questionario_id)
     openquestion_list = OpenQuestion.objects.filter(di = questionario_id)
-    choice_dict = {}
-    for multipleoptionquestion in multipleopenquestion_list:
-        choice_dict[multipleoptionquestion.id] = list(Choice.objects.filter(question = multipleoptionquestion.id))
-    context = {"multipleopenquestion_list" : multipleopenquestion_list,
-               "openquestion_list" : openquestion_list,
-               "choice_dict" : choice_dict}
+    multipleoptionquestion_dict = {}
+    for multipleoptionquestion in multipleoptionquestion_list:
+        multipleoptionquestion_dict[multipleoptionquestion] = list(Choice.objects.filter(question = multipleoptionquestion.id))
+    context = {"multipleoptionquestion_dict" : multipleoptionquestion_dict,
+               "openquestion_list" : openquestion_list}
 
     return render(request,'quiz/depois_do_link.html', context)
 
