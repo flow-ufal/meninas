@@ -5,7 +5,7 @@
     {% for multipleoptionquestion, choices_list in multipleoptionquestion_dict.items %}
         <li> {{multipleoptionquestion.questionText}} </li>
           {% for choice in choices_list %}
-            <input type="radio" name="escolhas" value = choices.choiceText > {{choice.choiceText}} <br>
+            <input type="radio" name={{multipleoptionquestion.name}} value = choices.choiceText > {{choice.choiceText}} <br>
           {% endfor %}
     {% endfor %}
     </ul>
