@@ -1,11 +1,12 @@
-<form>
+<form method="post">
+{% csrf_token %}
 <h3>Questões de múltipla escolha:</h3>
 {% if multipleoptionquestion_dict %}
     <ul>
     {% for multipleoptionquestion, choices_list in multipleoptionquestion_dict.items %}
         <li> {{multipleoptionquestion.questionText}} </li>
           {% for choice in choices_list %}
-            <input type="radio" name={{multipleoptionquestion.name}} value = choices.choiceText > {{choice.choiceText}} <br>
+            <input type="radio" name="{{multipleoptionquestion}}" value="{{choice.id}}" > {{choice.choiceText}} <br>
           {% endfor %}
     {% endfor %}
     </ul>
@@ -18,7 +19,7 @@
     <ul>
     {% for openquestion in openquestion_list %}
         <li> {{ openquestion.questionText }} </li>
-        <input type='text' placeholder='Escreva aqui!' />
+        <input type="text" name="{{openquestion}}" placeholder="Escreva aqui!">
     {% endfor %}
     </ul>
 {% else %}
