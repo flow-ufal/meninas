@@ -31,12 +31,12 @@ class MultipleOptionQuestion(models.Model):
        Questionario,
        on_delete=models.CASCADE,
     )
-    name = models.CharField(max_length = 15, help_text="nome da pergunta, para referência")
+    name = models.CharField(max_length=20, help_text="Nome da pergunta, para referência")
     questionText = models.CharField(max_length = 500, help_text="O texto da pergunta")
     pub_date = models.DateTimeField(auto_now_add = True, help_text="A data de publicação")
 
     def __str__(self):
-        return '{0} ({1})'.format(self.name,self.questionText)
+        return 'Pergunta fechada: {0} ({1})'.format(self.name,self.questionText)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
@@ -52,8 +52,12 @@ class Choice(models.Model):
         on_delete=models.CASCADE,
      )
      choice = models.CharField("Choice", max_length=50)
+     choiceText = models.CharField(max_length = 500, help_text="O texto da opção", null=True, blank = True)
      votes = models.IntegerField(default=0)
-     position = models.IntegerField("position")
+     position = models.IntegerField("position",null=0,blank= 0)
+
+     def __str__(self):
+         return '{0} ({1})'.format(self.choice,self.choiceText)
 
 
      class Meta:
@@ -71,12 +75,12 @@ class OpenQuestion(models.Model):
        related_name="questions",
        on_delete=models.CASCADE,
     )
-    name = models.CharField(max_length = 20, help_text="nome da pergunta, para referência")
+    name = models.CharField(max_length=20, help_text="Nome da pergunta, para referência")
     questionText = models.CharField(max_length = 500, help_text="O texto da pergunta")
     pub_date = models.DateTimeField(auto_now_add = True, help_text="A data de publicação", null= True, blank=True)
 
     def __str__(self):
-        return '{0} ({1})'.format(self.name,self.questionText)
+        return 'Pergunta aberta: id{}'.format(self.id)
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)

@@ -1,8 +1,13 @@
+<form method="post">
+{% csrf_token %}
 <h3>Questões de múltipla escolha:</h3>
-{% if multipleopenquestion_list %}
+{% if multipleoptionquestion_dict %}
     <ul>
-    {% for multipleoptionquestion in multipleopenquestion_list %}
+    {% for multipleoptionquestion, choices_list in multipleoptionquestion_dict.items %}
         <li> {{multipleoptionquestion.questionText}} </li>
+          {% for choice in choices_list %}
+            <input type="radio" name="{{multipleoptionquestion}}" value="{{choice.id}}" > {{choice.choiceText}} <br>
+          {% endfor %}
     {% endfor %}
     </ul>
 {% else %}
@@ -14,8 +19,14 @@
     <ul>
     {% for openquestion in openquestion_list %}
         <li> {{ openquestion.questionText }} </li>
+        <input type="text" name="{{openquestion}}" placeholder="Escreva aqui!">
     {% endfor %}
     </ul>
 {% else %}
     <p>Não há questões dissertativas disponíveis.</p>
 {% endif %}
+
+<div class="button">
+        <button type="submit">Confirmar!</button>
+</div>
+</form>
